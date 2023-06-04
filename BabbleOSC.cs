@@ -46,11 +46,11 @@ public partial class BabbleOSC
                     var length = _receiver.Receive(buffer);
                     if (SROSCLib.parse_osc(buffer, length, ref oscMeta))
                     {
-                        if (BabbleExpressionMap.ContainsKey(oscMeta.Address))
+                        if (BabbleExpressionMap.ContainsKey2(oscMeta.Address))
                         {
                             if (oscMeta.Type == OscValueType.Float) // Possibly redundant
                             {
-                                BabbleExpressionMap[oscMeta.Address] = oscMeta.Value.FloatValues[0];
+                                BabbleExpressionMap.SetByKey2(oscMeta.Address, oscMeta.Value.FloatValues[0]); 
                             }
                         }
                     }
