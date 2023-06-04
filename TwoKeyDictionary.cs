@@ -237,6 +237,10 @@ namespace VRCFaceTracking.Babble
             m_dic2.Clear();
         }
 
+        public IEnumerable<TKey1> OuterKeys => m_dic1.Keys;
+
+        public IEnumerable<TKey2> InnerKeys => m_dic2.Keys;
+
         public IEnumerator<TValue> GetEnumerator()
         {
             return m_dic2.Values.GetEnumerator();

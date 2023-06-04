@@ -11,8 +11,10 @@ public class BabbleVRC : ExtTrackingModule
 
     public override (bool eyeSuccess, bool expressionSuccess) Initialize(bool eyeAvailable, bool expressionAvailable)
     {
-        unifiedExpressions = Enum.GetValues<UnifiedExpressions>();
         babbleOSC = new BabbleOSC(Logger);
+
+        // Don't just pull the enum - we only support a subset of UnifiedExpressions
+        unifiedExpressions = babbleOSC.BabbleExpressionMap.OuterKeys.ToArray();
 
         List<Stream> streams = new List<Stream>();
         Assembly a = Assembly.GetExecutingAssembly();
