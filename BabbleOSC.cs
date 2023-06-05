@@ -2,32 +2,26 @@
 using System.Net;
 using System.Net.Sockets;
 using VRCFaceTracking.Core.OSC;
+using VRCFaceTracking.Core.Params.Expressions;
 
 namespace VRCFaceTracking.Babble;
 public partial class BabbleOSC
 {
-    // Workaround for duplicate keys in the OSC map
-    public float MouthFunnel { get; private set; }
-    public float MouthPucker { get; private set; }
-
-    private readonly Socket _receiver;
+    private bool _loop;
+    private UdpClient _receiver;
+    private IPEndPoint _endpoint;
     private readonly Thread _thread;
     private readonly ILogger _logger;
     private readonly int _resolvedPort;
     private const int DEFAULT_PORT = 8888;
+
     public BabbleOSC(ILogger iLogger, int? port = null)
     {   
         _logger = iLogger;
-
-        if (_receiver != null)
-        {
-            _logger.LogError("BabbleOSC connection already exists.");
-            return;
-        }
-
-        _receiver = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+        _loop = true;
         _resolvedPort = port ?? DEFAULT_PORT;
-        _receiver.Connect(new IPEndPoint(IPAddress.Parse("127.0.0.1"), _resolvedPort));
+        _receiver = new UdpClient(_resolvedPort);
+        _endpoint = new IPEndPoint(IPAddress.Loopback, _resolvedPort);
         _thread = new Thread(new ThreadStart(ListenLoop));
         _thread.Start();
     }
@@ -35,19 +29,16 @@ public partial class BabbleOSC
     private void ListenLoop()
     {
         OscMessageMeta oscMeta = new OscMessageMeta();
-        var buffer = new byte[4096];
+        byte[] buffer;
 
-        while (!MainStandalone.MasterCancellationTokenSource.IsCancellationRequested)
+        while (_loop)
         {
             try
             {
-                var length = _receiver.Receive(buffer);
-                if (SROSCLib.parse_osc(buffer, length, ref oscMeta))
+                buffer = _receiver.Receive(ref _endpoint);
+                if (SROSCLib.parse_osc(buffer, buffer.Length, ref oscMeta))
                 {
-                    if (oscMeta.Type != OscValueType.Float) // Possibly redundant
-                    {
-                        continue;
-                    }
+                    if (oscMeta.Type != OscValueType.Float) continue; // Possibly redundant
 
                     float value = oscMeta.Value.FloatValues[0];
                     if (BabbleUniqueExpressionMap.ContainsKey2(oscMeta.Address))
@@ -59,26 +50,31 @@ public partial class BabbleOSC
                     switch (oscMeta.Address)
                     {
                         case "/mouthFunnel":
-                            MouthFunnel = value;
+                            BabbleUniqueExpressionMap.SetByKey1(UnifiedExpressions.LipFunnelLowerLeft, value);
+                            BabbleUniqueExpressionMap.SetByKey1(UnifiedExpressions.LipFunnelLowerRight, value);
+                            BabbleUniqueExpressionMap.SetByKey1(UnifiedExpressions.LipFunnelUpperLeft, value);
+                            BabbleUniqueExpressionMap.SetByKey1(UnifiedExpressions.LipFunnelUpperRight, value);
                             break;
                         case "/mouthPucker":
-                            MouthPucker = value;
+                            BabbleUniqueExpressionMap.SetByKey1(UnifiedExpressions.LipPuckerLowerLeft, value);
+                            BabbleUniqueExpressionMap.SetByKey1(UnifiedExpressions.LipPuckerLowerRight, value);
+                            BabbleUniqueExpressionMap.SetByKey1(UnifiedExpressions.LipPuckerUpperLeft, value);
+                            BabbleUniqueExpressionMap.SetByKey1(UnifiedExpressions.LipPuckerUpperRight, value);
                             break;
                     }
                 }
             }
             catch (Exception e)
             {
-                if (_receiver.Connected)
-                    _logger.LogError(e.Message);
+                _logger.LogError(e.Message);
             }
         }
     }
 
     public void Teardown()
     {
+        _loop = false;
         _receiver.Close();
-        _receiver.Dispose();
         _thread.Join();
     }
 }

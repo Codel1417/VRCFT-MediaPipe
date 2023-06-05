@@ -16,15 +16,17 @@ public partial class BabbleOSC
         { UnifiedExpressions.NoseSneerLeft, "/noseSneerLeft", 0f },
         { UnifiedExpressions.NoseSneerRight, "/noseSneerRight", 0f },
 
-        //{ UnifiedExpressions.LipFunnelLowerLeft, "/mouthFunnel", 0f },
-        //{ UnifiedExpressions.LipFunnelLowerRight, "/mouthFunnel", 0f },
-        //{ UnifiedExpressions.LipFunnelUpperLeft, "/mouthFunnel", 0f },
-        //{ UnifiedExpressions.LipFunnelUpperLeft, "/mouthFunnel", 0f },
+        // "/mouthFunnel"
+        { UnifiedExpressions.LipFunnelLowerLeft, "/lipFunnelLowerLeft", 0f },
+        { UnifiedExpressions.LipFunnelLowerRight, "/lipFunnelLowerRight", 0f },
+        { UnifiedExpressions.LipFunnelUpperLeft, "/lipFunnelUpperLeft", 0f },
+        { UnifiedExpressions.LipFunnelUpperLeft, "/lipFunnelUpperLeft", 0f },
 
-        //{ UnifiedExpressions.LipPuckerLowerLeft, "/mouthPucker", 0f },
-        //{ UnifiedExpressions.LipPuckerLowerRight, "/mouthPucker", 0f },
-        //{ UnifiedExpressions.LipPuckerUpperLeft, "/mouthPucker", 0f },
-        //{ UnifiedExpressions.LipPuckerUpperRight, "/mouthPucker", 0f },
+        // "/mouthPucker"
+        { UnifiedExpressions.LipPuckerLowerLeft, "/lipPuckerLowerLeft", 0f },
+        { UnifiedExpressions.LipPuckerLowerRight, "/lipPuckerLowerRight", 0f },
+        { UnifiedExpressions.LipPuckerUpperLeft, "/lipPuckerUpperLeft", 0f },
+        { UnifiedExpressions.LipPuckerUpperRight, "/lipPuckerUpperRight", 0f },
 
         { UnifiedExpressions.MouthClosed, "/mouthClose", 0f },
         { UnifiedExpressions.MouthCornerPullLeft, "/mouthSmileLeft", 0f },

@@ -23,7 +23,7 @@ public class BabbleVRC : ExtTrackingModule
         streams.Add(hmdStream);
         ModuleInformation = new ModuleMetadata()
         {
-            Name = "Project Babble Face Tracking\nInference Model v2.1.0",
+            Name = "Project Babble Face Tracking\nInference Model v2.1.0a",
             StaticImages = streams,
         };
 
@@ -37,17 +37,7 @@ public class BabbleVRC : ExtTrackingModule
         {
             UnifiedTracking.Data.Shapes[(int)expression].Weight = babble.BabbleUniqueExpressionMap.GetByKey1(expression);
         }
-
-        UnifiedTracking.Data.Shapes[(int)UnifiedExpressions.LipFunnelLowerLeft].Weight = babble.MouthFunnel;
-        UnifiedTracking.Data.Shapes[(int)UnifiedExpressions.LipFunnelLowerRight].Weight = babble.MouthFunnel;
-        UnifiedTracking.Data.Shapes[(int)UnifiedExpressions.LipFunnelUpperLeft].Weight = babble.MouthFunnel;
-        UnifiedTracking.Data.Shapes[(int)UnifiedExpressions.LipFunnelUpperLeft].Weight = babble.MouthFunnel;
-
-        UnifiedTracking.Data.Shapes[(int)UnifiedExpressions.LipPuckerLowerLeft].Weight = babble.MouthPucker;
-        UnifiedTracking.Data.Shapes[(int)UnifiedExpressions.LipPuckerLowerRight].Weight = babble.MouthPucker;
-        UnifiedTracking.Data.Shapes[(int)UnifiedExpressions.LipPuckerUpperLeft].Weight = babble.MouthPucker;
-        UnifiedTracking.Data.Shapes[(int)UnifiedExpressions.LipPuckerUpperRight].Weight = babble.MouthPucker;
-
-        Thread.Sleep(10);
+        
+        // Thread.Sleep(10);
     }
 }
