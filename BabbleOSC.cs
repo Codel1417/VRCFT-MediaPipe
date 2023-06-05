@@ -44,27 +44,26 @@ public partial class BabbleOSC
                 var length = _receiver.Receive(buffer);
                 if (SROSCLib.parse_osc(buffer, length, ref oscMeta))
                 {
+                    if (oscMeta.Type != OscValueType.Float) // Possibly redundant
+                    {
+                        continue;
+                    }
+
+                    float value = oscMeta.Value.FloatValues[0];
                     if (BabbleUniqueExpressionMap.ContainsKey2(oscMeta.Address))
                     {
-                        if (oscMeta.Type != OscValueType.Float) // Possibly redundant
-                        {
-                            continue;
-                        }
+                        BabbleUniqueExpressionMap.SetByKey2(oscMeta.Address, value);
+                        continue;
+                    }
 
-                        float value = oscMeta.Value.FloatValues[0];
-                        switch (oscMeta.Address)
-                        {
-                            case "/mouthFunnel":
-                                MouthFunnel = value;
-                                break;
-                            case "/mouthPucker":
-                                MouthPucker = value;
-                                break;
-                            default:
-                                BabbleUniqueExpressionMap.SetByKey2(oscMeta.Address, value);
-                                break;
-                        }
-
+                    switch (oscMeta.Address)
+                    {
+                        case "/mouthFunnel":
+                            MouthFunnel = value;
+                            break;
+                        case "/mouthPucker":
+                            MouthPucker = value;
+                            break;
                     }
                 }
             }

@@ -5,7 +5,7 @@ namespace VRCFaceTracking.Babble;
 public class BabbleVRC : ExtTrackingModule
 {
     private BabbleOSC babble;
-    private UnifiedExpressions[] unifiedExpressions;
+    private UnifiedExpressions[] unifiedDistinctExpressions;
 
     public override (bool SupportsEye, bool SupportsExpression) Supported => (false, true);
 
@@ -14,7 +14,7 @@ public class BabbleVRC : ExtTrackingModule
         babble = new BabbleOSC(Logger);
 
         // Don't just pull the enum - we only support a subset of distinct UnifiedExpressions
-        unifiedExpressions = babble.BabbleUniqueExpressionMap.OuterKeys.ToArray();
+        unifiedDistinctExpressions = babble.BabbleUniqueExpressionMap.OuterKeys.ToArray();
 
         List<Stream> streams = new List<Stream>();
         Assembly a = Assembly.GetExecutingAssembly();
@@ -24,7 +24,7 @@ public class BabbleVRC : ExtTrackingModule
         ModuleInformation = new ModuleMetadata()
         {
             Name = "Project Babble Face Tracking\nInference Model v2.1.0",
-            StaticImages = streams 
+            StaticImages = streams,
         };
 
         return (false, true);
@@ -33,7 +33,7 @@ public class BabbleVRC : ExtTrackingModule
     public override void Teardown() => babble.Teardown();
     public override void Update()
     {
-        foreach (var expression in unifiedExpressions)
+        foreach (var expression in unifiedDistinctExpressions)
         {
             UnifiedTracking.Data.Shapes[(int)expression].Weight = babble.BabbleUniqueExpressionMap.GetByKey1(expression);
         }
