@@ -13,7 +13,7 @@ public class BabbleVRC : ExtTrackingModule
     {
         babble = new BabbleOSC(Logger);
 
-        // Don't just pull the enum - we only support a subset of UnifiedExpressions
+        // Don't just pull the enum - we only support a subset of distinct UnifiedExpressions
         unifiedExpressions = babble.BabbleUniqueExpressionMap.OuterKeys.ToArray();
 
         List<Stream> streams = new List<Stream>();
@@ -23,10 +23,10 @@ public class BabbleVRC : ExtTrackingModule
         streams.Add(hmdStream);
         ModuleInformation = new ModuleMetadata()
         {
-            Name = "Project Babble Face Tracking\nInference Model v2.0.0"
+            Name = "Project Babble Face Tracking\nInference Model v2.1.0",
+            StaticImages = streams 
         };
 
-        ModuleInformation.StaticImages = streams;
         return (false, true);
     }
 
