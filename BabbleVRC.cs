@@ -38,6 +38,6 @@ public class BabbleVRC : ExtTrackingModule
             UnifiedTracking.Data.Shapes[(int)expression].Weight = babble.BabbleUniqueExpressionMap.GetByKey1(expression);
         }
         
-        // Thread.Sleep(10);
+        Thread.Sleep(10);
     }
 }
