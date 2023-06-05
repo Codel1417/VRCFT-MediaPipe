@@ -4,17 +4,17 @@ using VRCFaceTracking.Core.Params.Expressions;
 namespace VRCFaceTracking.Babble;
 public class BabbleVRC : ExtTrackingModule
 {
-    private BabbleOSC babbleOSC;
+    private BabbleOSC babble;
     private UnifiedExpressions[] unifiedExpressions;
 
     public override (bool SupportsEye, bool SupportsExpression) Supported => (false, true);
 
     public override (bool eyeSuccess, bool expressionSuccess) Initialize(bool eyeAvailable, bool expressionAvailable)
     {
-        babbleOSC = new BabbleOSC(Logger);
+        babble = new BabbleOSC(Logger);
 
         // Don't just pull the enum - we only support a subset of UnifiedExpressions
-        unifiedExpressions = babbleOSC.BabbleExpressionMap.OuterKeys.ToArray();
+        unifiedExpressions = babble.BabbleUniqueExpressionMap.OuterKeys.ToArray();
 
         List<Stream> streams = new List<Stream>();
         Assembly a = Assembly.GetExecutingAssembly();
@@ -30,12 +30,24 @@ public class BabbleVRC : ExtTrackingModule
         return (false, true);
     }
 
-    public override void Teardown() => babbleOSC.Teardown();
+    public override void Teardown() => babble.Teardown();
     public override void Update()
     {
         foreach (var expression in unifiedExpressions)
         {
-            UnifiedTracking.Data.Shapes[(int)expression].Weight = babbleOSC.BabbleExpressionMap.GetByKey1(expression);
+            UnifiedTracking.Data.Shapes[(int)expression].Weight = babble.BabbleUniqueExpressionMap.GetByKey1(expression);
         }
+
+        UnifiedTracking.Data.Shapes[(int)UnifiedExpressions.LipFunnelLowerLeft].Weight = babble.MouthFunnel;
+        UnifiedTracking.Data.Shapes[(int)UnifiedExpressions.LipFunnelLowerRight].Weight = babble.MouthFunnel;
+        UnifiedTracking.Data.Shapes[(int)UnifiedExpressions.LipFunnelUpperLeft].Weight = babble.MouthFunnel;
+        UnifiedTracking.Data.Shapes[(int)UnifiedExpressions.LipFunnelUpperLeft].Weight = babble.MouthFunnel;
+
+        UnifiedTracking.Data.Shapes[(int)UnifiedExpressions.LipPuckerLowerLeft].Weight = babble.MouthFunnel;
+        UnifiedTracking.Data.Shapes[(int)UnifiedExpressions.LipPuckerLowerRight].Weight = babble.MouthFunnel;
+        UnifiedTracking.Data.Shapes[(int)UnifiedExpressions.LipPuckerUpperLeft].Weight = babble.MouthFunnel;
+        UnifiedTracking.Data.Shapes[(int)UnifiedExpressions.LipPuckerUpperRight].Weight = babble.MouthFunnel;
+
+        Thread.Sleep(10);
     }
 }
