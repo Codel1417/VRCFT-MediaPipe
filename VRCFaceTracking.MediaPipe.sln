@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33815.320
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VRCFaceTracking.MediaPipe", "VRCFaceTracking.MediaPipe.csproj", "{584738F1-A7B8-467A-A5F2-4EFF7942207C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{584738F1-A7B8-467A-A5F2-4EFF7942207C}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{584738F1-A7B8-467A-A5F2-4EFF7942207C}.Debug|Any CPU.Build.0 = Release|Any CPU
+		{584738F1-A7B8-467A-A5F2-4EFF7942207C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{584738F1-A7B8-467A-A5F2-4EFF7942207C}.Debug|x64.Build.0 = Debug|Any CPU
+		{584738F1-A7B8-467A-A5F2-4EFF7942207C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{584738F1-A7B8-467A-A5F2-4EFF7942207C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{584738F1-A7B8-467A-A5F2-4EFF7942207C}.Release|x64.ActiveCfg = Release|Any CPU
+		{584738F1-A7B8-467A-A5F2-4EFF7942207C}.Release|x64.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {768B755E-B215-434D-BAFF-90B8EE64E3CA}
+	EndGlobalSection
+EndGlobal
