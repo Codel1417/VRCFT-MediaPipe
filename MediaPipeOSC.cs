@@ -3,8 +3,8 @@ using System.Net.Sockets;
 using Microsoft.Extensions.Logging;
 using VRCFaceTracking.Core.OSC;
 
-namespace VRCFaceTracking.Babble;
-public partial class BabbleOSC
+namespace VRCFaceTracking.MediaPipe;
+public partial class MediaPipeOSC
 {
     private Socket _receiver;
     private bool _loop = true;
@@ -14,7 +14,7 @@ public partial class BabbleOSC
     private const int DEFAULT_PORT = 8888;
     private const int TIMEOUT_MS = 10_000;
 
-    public BabbleOSC(ILogger iLogger, int? port = null)
+    public MediaPipeOSC(ILogger iLogger, int? port = null)
     {   
         _logger = iLogger;
 
