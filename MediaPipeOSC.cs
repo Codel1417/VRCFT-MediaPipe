@@ -1,6 +1,5 @@
 using System.Net;
 using System.Net.Sockets;
-using Microsoft.Extensions.Logging;
 using VRCFaceTracking.Core.OSC;
 
 namespace VRCFaceTracking.MediaPipe;
@@ -9,20 +8,13 @@ public partial class MediaPipeOSC
     private Socket _receiver;
     private bool _loop = true;
     private readonly Thread _thread;
-    private readonly ILogger _logger;
     private readonly int _resolvedPort;
     private const int DEFAULT_PORT = 8888;
     private const int TIMEOUT_MS = 10_000;
 
-    public MediaPipeOSC(ILogger iLogger, int? port = null)
+    public MediaPipeOSC(int? port = null)
     {   
-        _logger = iLogger;
-
-        if (_receiver != null)
-        {
-            _logger.LogError("BabbleOSC connection already exists.");
-            return;
-        }
+ 
 
         _receiver = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
         _resolvedPort = port ?? DEFAULT_PORT;

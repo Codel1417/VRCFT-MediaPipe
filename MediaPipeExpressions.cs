@@ -55,5 +55,6 @@ public partial class MediaPipeOSC
         {"/mouthUpperUpRight", 0f },
         {"/noseSneerLeft", 0f },
         {"/noseSneerRight", 0f },
+        {"/tongueOut", 0f },
     };
 }

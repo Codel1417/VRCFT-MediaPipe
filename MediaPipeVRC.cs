@@ -10,7 +10,7 @@ public class MediaPipeVRC : ExtTrackingModule
 
     public override (bool eyeSuccess, bool expressionSuccess) Initialize(bool eyeAvailable, bool expressionAvailable)
     {
-        babbleOSC = new MediaPipeOSC(Logger);
+        babbleOSC = new MediaPipeOSC();
 
         List<Stream> streams = new List<Stream>();
         Assembly a = Assembly.GetExecutingAssembly();
@@ -88,8 +88,8 @@ public class MediaPipeVRC : ExtTrackingModule
         UnifiedTracking.Data.Shapes[(int)UnifiedExpressions.CheekSquintLeft].Weight = babbleOSC.BabbleExpressionMap["/cheekSquintLeft"];
         UnifiedTracking.Data.Shapes[(int)UnifiedExpressions.CheekSquintRight].Weight = babbleOSC.BabbleExpressionMap["/cheekSquintRight"];
         
-        UnifiedTracking.Data.Eye.Left.Openness = -babbleOSC.BabbleExpressionMap["/eyeBlinkLeft"];
-        UnifiedTracking.Data.Eye.Right.Openness = -babbleOSC.BabbleExpressionMap["/eyeBlinkRight"]; 
+        UnifiedTracking.Data.Eye.Left.Openness = 1 - babbleOSC.BabbleExpressionMap["/eyeBlinkLeft"];
+        UnifiedTracking.Data.Eye.Right.Openness = 1 - babbleOSC.BabbleExpressionMap["/eyeBlinkRight"];
         UnifiedTracking.Data.Eye.Left.Gaze.x = -babbleOSC.BabbleExpressionMap["/eyeLookOutLeft"] + babbleOSC.BabbleExpressionMap["/eyeLookInLeft"];
         UnifiedTracking.Data.Eye.Left.Gaze.y = -babbleOSC.BabbleExpressionMap["/eyeLookDownLeft"] + babbleOSC.BabbleExpressionMap["/eyeLookUpLeft"];
         UnifiedTracking.Data.Eye.Right.Gaze.x = -babbleOSC.BabbleExpressionMap["/eyeLookInRight"] + babbleOSC.BabbleExpressionMap["/eyeLookOutRight"];
