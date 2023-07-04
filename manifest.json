@@ -1,9 +1,9 @@
 {
   "ModuleId": "6A8E106E-5C18-49A9-8079-B8FA2856E67F",
   "AuthorName": "Code-Floof",
-  "DllFileName": "",
+  "DllFileName": "VRCFaceTracking.MediaPipe.dll",
   "Downloads": 0,
-  "DownloadUrl": "https://github.com/dfgHiatus/VRCFT-Babble/releases/download/v2.1.0a/VRCFaceTracking.Babble.dll",
+  "DownloadUrl": "https://github.com/Codel1417/VRCFT-MediaPipe/releases/download/v0.99.1/VRCFaceTracking.MediaPipe.dll",
   "LastUpdated": "2023-07-01T01:08:01Z",
   "ModuleDescription": "Google MediaPipe eye and face tracking for VRCFaceTracking v5.",
   "ModuleName": "VRCFT-MediaPipe",
@@ -12,5 +12,5 @@
   "Ratings": 0,
   "RatingSum": 0,
   "UsageInstructions": "For complete instructions, please refer to the project page.",
-  "Version": "1.0"
+  "Version": "0.99.1"
 }
