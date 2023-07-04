@@ -7,7 +7,7 @@
 ## Installation instructions
 
 1) Download and install [MediaPipe OSC](https://github.com/Codel1417/MediaPipe-OSC) and [VRCFaceTracking](https://github.com/benaclejames/VRCFaceTracking)
-1) Download a copy of the latest release [here](https://github.com/dfgHiatus/VRCFT-Babble/releases/latest)
+1) Download a copy of the latest release [here](https://github.com/Codel1417/VRCFT-MediaPipe/releases/latest)
 1) Drop the `VRCFaceTracking.MediaPipe.dll` file in `AppData\Roaming\VRCFaceTracking\CustomLibs`. If this folder does not exist you can create it, VRCFaceTracking will create it on launch
 1) Launch MediaPipe OSC and make sure a Webcam is connected
 1) Launch VRCFT (v5!)
