@@ -2,7 +2,7 @@
 
 [MediaPipe OSC](https://github.com/Codel1417/MediaPipe-OSC) Module for [VRCFaceTracking](https://github.com/benaclejames/VRCFaceTracking). An open-source VR mouth-tracking solution
 
-![image](https://github.com/dfgHiatus/VRCFT-Babble/assets/51272212/90601f30-55a4-48af-a012-9cdb9bc47aa6)
+<img width="1116" alt="image" src="https://github.com/Codel1417/VRCFT-MediaPipe/assets/13484789/a247fd4b-16a7-4783-8661-675bbdcc4f09">
 
 ## Installation instructions
 
