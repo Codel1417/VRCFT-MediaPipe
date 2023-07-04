@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="google_mediapipe_logo_notMine.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="Microsoft.Extensions.Logging">
       <HintPath>C:\Program Files\WindowsApps\96ba052f-0948-44d8-86c4-a0212e4ae047_5.0.2.3_x64__d7rcq4vxghz0r\Microsoft.Extensions.Logging.dll</HintPath>
     </Reference>
@@ -16,6 +20,10 @@
     <Reference Include="VRCFaceTracking.Core">
       <HintPath>C:\Program Files\WindowsApps\96ba052f-0948-44d8-86c4-a0212e4ae047_5.0.2.3_x64__d7rcq4vxghz0r\VRCFaceTracking.Core.dll</HintPath>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="google_mediapipe_logo_notMine.png" />
   </ItemGroup>
   
 
