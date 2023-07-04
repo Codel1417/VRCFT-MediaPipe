@@ -15,4 +15,3 @@
 1) Equip a face-tracking avatar (one with unified expressions)
 1) Profit!
 
-### Thanks to Summer#2406, Rames The Generic#3540, DenTechs#9511, PLYSHKA#6201, and benaclejames#6822 for helping me test, and encouraging me to do this!
